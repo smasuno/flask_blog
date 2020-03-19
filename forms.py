@@ -7,12 +7,12 @@ Created on Tue Mar 10 10:20:19 2020
 """
 
 from flask import Flask
+from urllib.parse import urlencode as url_encode
 from flask_wtf import FlaskForm 
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'shintaromasuno'
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
@@ -27,3 +27,4 @@ class LoginForm(FlaskForm):
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
+
